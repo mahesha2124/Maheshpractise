@@ -1,0 +1,35 @@
+#providers
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region = var.region
+}
+
+#vpc
+resource "aws_vpc" "tesing" {
+  cidr_block =var.cidr_block 
+    tags = {
+    Name = "Main"
+  }
+}
+#subnet
+
+resource "aws_subnet" "main" {
+  vpc_id     = aws_vpc.tesing.id
+  cidr_block = subnet_cir1
+
+  tags = {
+    Name = "Main"
+  }
+}
+
+resource "aws_subnet" "main2" {
+  vpc_id     = aws_vpc.tesing.
